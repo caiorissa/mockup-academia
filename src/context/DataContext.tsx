@@ -109,7 +109,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
       email: input.email.trim(),
       phone: input.phone.trim(),
       plan: input.plan,
-      status: 'pendente',
+      status: 'ativo',
       enrolledAt: today.toISOString().split('T')[0],
       nextDueDate: nextMonth.toISOString().split('T')[0],
       monthlyFee: input.monthlyFee,

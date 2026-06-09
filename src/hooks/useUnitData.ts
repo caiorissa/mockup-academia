@@ -3,6 +3,7 @@ import { useApp } from '@/context/AppContext'
 import { useData } from '@/context/DataContext'
 import { checkInsByUnit, hourlyCheckInsByUnit } from '@/data/mock/checkinsByUnit'
 import { metricsByUnit } from '@/data/mock/metricsByUnit'
+import { computeLiveMetrics } from '@/lib/computeMetrics'
 
 export function useUnitStudents() {
   const { selectedUnitId } = useApp()
@@ -46,7 +47,17 @@ export function useUnitHourlyCheckIns() {
 
 export function useUnitMetrics() {
   const { selectedUnitId } = useApp()
-  return metricsByUnit[selectedUnitId] ?? metricsByUnit.pinheiros
+  const students = useUnitStudents()
+  const payments = useUnitPayments()
+  const checkIns = useUnitCheckIns()
+  const workouts = useUnitWorkouts()
+
+  const base = metricsByUnit[selectedUnitId] ?? metricsByUnit.pinheiros
+
+  return useMemo(
+    () => computeLiveMetrics(students, payments, checkIns, workouts, base),
+    [students, payments, checkIns, workouts, base],
+  )
 }
 
 export function usePendingPaymentsCount() {

@@ -97,9 +97,11 @@ export function Dashboard() {
               <CardTitle>Receita mensal</CardTitle>
               <CardDescription>Últimos 6 meses — {selectedUnit.name}</CardDescription>
             </div>
-            <Badge variant="success" dot>
-              +{m.monthlyRevenueChange}%
-            </Badge>
+            {m.monthlyRevenueChange !== 0 && (
+              <Badge variant={m.monthlyRevenueChange >= 0 ? 'success' : 'danger'} dot>
+                {m.monthlyRevenueChange >= 0 ? '+' : ''}{m.monthlyRevenueChange}%
+              </Badge>
+            )}
           </CardHeader>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
@@ -196,6 +198,9 @@ export function Dashboard() {
             <CardTitle>Atividade recente</CardTitle>
           </CardHeader>
           <div className="space-y-1">
+            {m.recentActivity.length === 0 && (
+              <p className="text-sm text-vertex-500 text-center py-6">Nenhuma atividade recente.</p>
+            )}
             {m.recentActivity.map((item, i) => {
               const Icon = activityIcons[item.type]
               return (
@@ -228,8 +233,12 @@ export function Dashboard() {
           <div className="space-y-3">
             <div className="flex items-center justify-between rounded-xl bg-danger-muted border border-danger/20 p-4">
               <div>
-                <p className="text-sm font-medium text-danger">Pagamentos em atraso</p>
-                <p className="text-xs text-vertex-300 mt-0.5">{m.overduePayments} alunos com pendência</p>
+                <p className="text-sm font-medium text-danger">Cobranças pendentes</p>
+                <p className="text-xs text-vertex-300 mt-0.5">
+                  {m.overduePayments === 0
+                    ? 'Nenhuma pendência nesta unidade'
+                    : `${m.overduePayments} cobrança(s) em aberto`}
+                </p>
               </div>
               <span className="text-2xl font-bold text-danger">{m.overduePayments}</span>
             </div>
