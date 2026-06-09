@@ -1,0 +1,78 @@
+import type { DashboardMetrics } from '@/types'
+
+export const dashboardMetrics: DashboardMetrics = {
+  activeStudents: 342,
+  activeStudentsChange: 4.2,
+  monthlyRevenue: 68420,
+  monthlyRevenueChange: 8.7,
+  retentionRate: 89.3,
+  retentionChange: 2.1,
+  todayCheckIns: 156,
+  todayCheckInsChange: 12.5,
+  overduePayments: 23,
+  newEnrollments: 18,
+  churnRate: 3.8,
+  avgAttendance: 74,
+  revenueHistory: [
+    { month: 'Jan', value: 52100 },
+    { month: 'Fev', value: 54800 },
+    { month: 'Mar', value: 56200 },
+    { month: 'Abr', value: 58900 },
+    { month: 'Mai', value: 63100 },
+    { month: 'Jun', value: 68420 },
+  ],
+  enrollmentHistory: [
+    { month: 'Jan', value: 12 },
+    { month: 'Fev', value: 15 },
+    { month: 'Mar', value: 18 },
+    { month: 'Abr', value: 14 },
+    { month: 'Mai', value: 22 },
+    { month: 'Jun', value: 18 },
+  ],
+  retentionHistory: [
+    { month: 'Jan', value: 84 },
+    { month: 'Fev', value: 85 },
+    { month: 'Mar', value: 86 },
+    { month: 'Abr', value: 87 },
+    { month: 'Mai', value: 88 },
+    { month: 'Jun', value: 89 },
+  ],
+  planDistribution: [
+    { name: 'Mensal', value: 42, color: '#FF6B35' },
+    { name: 'Trimestral', value: 24, color: '#60A5FA' },
+    { name: 'Semestral', value: 18, color: '#34D399' },
+    { name: 'Anual', value: 16, color: '#FBBF24' },
+  ],
+  recentActivity: [
+    {
+      id: 'a1',
+      type: 'checkin',
+      message: 'Gabriela Lima fez check-in às 06:50',
+      timestamp: '2026-06-07T06:50:00',
+    },
+    {
+      id: 'a2',
+      type: 'payment',
+      message: 'Ana Carolina Mendes — pagamento confirmado (R$ 189,90)',
+      timestamp: '2026-06-07T08:15:00',
+    },
+    {
+      id: 'a3',
+      type: 'enrollment',
+      message: 'Nova matrícula: Camila Rodrigues (Trimestral)',
+      timestamp: '2026-05-28T14:30:00',
+    },
+    {
+      id: 'a4',
+      type: 'workout',
+      message: 'Ficha atualizada — Diego Almeida (Lower Body)',
+      timestamp: '2026-05-28T11:00:00',
+    },
+    {
+      id: 'a5',
+      type: 'checkin',
+      message: 'Diego Almeida fez check-in às 07:15',
+      timestamp: '2026-06-07T07:15:00',
+    },
+  ],
+}

@@ -1,0 +1,132 @@
+import type { CheckIn } from '@/types'
+
+export const checkInsByUnit: Record<string, CheckIn[]> = {
+  pinheiros: [
+    {
+      id: 'c1',
+      studentId: '4',
+      studentName: 'Diego Almeida',
+      timestamp: '2026-06-07T07:15:00',
+      method: 'facial',
+      duration: 58,
+    },
+    {
+      id: 'c2',
+      studentId: '1',
+      studentName: 'Ana Carolina Mendes',
+      timestamp: '2026-06-07T08:32:00',
+      method: 'qr',
+      duration: 85,
+    },
+    {
+      id: 'c3',
+      studentId: '2',
+      studentName: 'Bruno Henrique Silva',
+      timestamp: '2026-06-06T18:45:00',
+      method: 'manual',
+      duration: 62,
+    },
+  ],
+  moema: [
+    {
+      id: 'c4',
+      studentId: '5',
+      studentName: 'Eduarda Santos',
+      timestamp: '2026-06-05T19:20:00',
+      method: 'qr',
+      duration: 45,
+    },
+    {
+      id: 'c5',
+      studentId: '10',
+      studentName: 'João Pedro Costa',
+      timestamp: '2026-06-07T06:30:00',
+      method: 'qr',
+      duration: 70,
+    },
+    {
+      id: 'c6',
+      studentId: '9',
+      studentName: 'Isabela Martins',
+      timestamp: '2026-06-06T17:00:00',
+      method: 'facial',
+      duration: 55,
+    },
+  ],
+  'vila-madalena': [
+    {
+      id: 'c7',
+      studentId: '7',
+      studentName: 'Gabriela Lima',
+      timestamp: '2026-06-07T06:50:00',
+      method: 'qr',
+      duration: 72,
+    },
+    {
+      id: 'c8',
+      studentId: '11',
+      studentName: 'Lucas Pereira',
+      timestamp: '2026-06-07T07:30:00',
+      method: 'facial',
+      duration: 48,
+    },
+  ],
+  brooklin: [
+    {
+      id: 'c9',
+      studentId: '13',
+      studentName: 'Thiago Rocha',
+      timestamp: '2026-06-06T18:10:00',
+      method: 'qr',
+      duration: 64,
+    },
+    {
+      id: 'c10',
+      studentId: '14',
+      studentName: 'Vanessa Oliveira',
+      timestamp: '2026-06-05T07:45:00',
+      method: 'qr',
+      duration: 52,
+    },
+  ],
+}
+
+export const hourlyCheckInsByUnit: Record<string, { hour: string; count: number }[]> = {
+  pinheiros: [
+    { hour: '06h', count: 5 },
+    { hour: '07h', count: 14 },
+    { hour: '08h', count: 18 },
+    { hour: '09h', count: 9 },
+    { hour: '10h', count: 4 },
+    { hour: '17h', count: 8 },
+    { hour: '18h', count: 16 },
+    { hour: '19h', count: 12 },
+    { hour: '20h', count: 7 },
+  ],
+  moema: [
+    { hour: '06h', count: 4 },
+    { hour: '07h', count: 8 },
+    { hour: '08h', count: 10 },
+    { hour: '12h', count: 6 },
+    { hour: '17h', count: 9 },
+    { hour: '18h', count: 14 },
+    { hour: '19h', count: 16 },
+    { hour: '20h', count: 10 },
+  ],
+  'vila-madalena': [
+    { hour: '06h', count: 3 },
+    { hour: '07h', count: 6 },
+    { hour: '08h', count: 7 },
+    { hour: '18h', count: 8 },
+    { hour: '19h', count: 10 },
+    { hour: '20h', count: 5 },
+  ],
+  brooklin: [
+    { hour: '07h', count: 3 },
+    { hour: '08h', count: 4 },
+    { hour: '17h', count: 5 },
+    { hour: '18h', count: 7 },
+    { hour: '19h', count: 6 },
+    { hour: '21h', count: 3 },
+  ],
+}
