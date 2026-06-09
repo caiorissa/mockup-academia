@@ -1,7 +1,7 @@
-import { motion } from 'framer-motion'
 import { TrendingDown, TrendingUp, type LucideIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Card } from './Card'
+import { ScrollReveal } from '@/components/motion/ScrollReveal'
 
 interface StatCardProps {
   label: string
@@ -23,13 +23,10 @@ export function StatCard({
   const isPositive = change !== undefined && change >= 0
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
-      <Card hover accent className="relative overflow-hidden">
-        <div className="flex items-start justify-between gap-4">
+    <ScrollReveal delay={delay} direction="up">
+      <Card hover accent className="relative overflow-hidden group">
+        <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/[0.03] transition-colors duration-300 pointer-events-none" />
+        <div className="flex items-start justify-between gap-4 relative">
           <div className="space-y-1 min-w-0">
             <p className="text-[10px] font-bold text-vertex-400 uppercase tracking-widest">
               {label}
@@ -55,7 +52,7 @@ export function StatCard({
           </div>
           <div
             className={cn(
-              'flex h-11 w-11 shrink-0 items-center justify-center border border-vertex-600/50 bg-vertex-900/60',
+              'flex h-11 w-11 shrink-0 items-center justify-center border border-vertex-600/50 bg-vertex-900/60 transition-transform duration-200 group-hover:scale-105',
               iconColor,
             )}
           >
@@ -63,6 +60,6 @@ export function StatCard({
           </div>
         </div>
       </Card>
-    </motion.div>
+    </ScrollReveal>
   )
 }

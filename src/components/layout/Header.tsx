@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { motion, useReducedMotion } from 'framer-motion'
 import { Bell, Menu, Search } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
@@ -15,6 +16,7 @@ interface HeaderProps {
 export function Header({ onMenuClick, title }: HeaderProps) {
   const { settings, selectedUnit } = useApp()
   const pendingCount = usePendingPaymentsCount()
+  const shouldReduce = useReducedMotion()
 
   return (
     <header className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-vertex-700/50 bg-vertex-900/90 backdrop-blur-md px-4 lg:px-8 shadow-card">
@@ -55,15 +57,20 @@ export function Header({ onMenuClick, title }: HeaderProps) {
             <Bell className="h-[18px] w-[18px]" />
           </Button>
           {settings.notifications.push && pendingCount > 0 && (
-            <span className="absolute top-1.5 right-1.5 flex h-4 w-4 items-center justify-center bg-danger text-[9px] font-bold text-white">
+            <motion.span
+              initial={false}
+              animate={shouldReduce ? undefined : { scale: [1, 1.12, 1] }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute top-1.5 right-1.5 flex h-4 w-4 items-center justify-center bg-danger text-[9px] font-bold text-white"
+            >
               {pendingCount}
-            </span>
+            </motion.span>
           )}
         </Link>
 
         <Link
           to="/configuracoes"
-          className="hidden sm:flex items-center gap-2.5 pl-3 ml-1 border-l border-vertex-700/50 hover:opacity-80 transition-opacity py-1"
+          className="hidden sm:flex items-center gap-2.5 pl-3 ml-1 border-l border-vertex-700/50 hover:opacity-80 hover:border-accent/30 transition-all duration-200 py-1"
         >
           <div className="text-right">
             <p className="text-xs font-semibold text-vertex-100">{settings.name}</p>

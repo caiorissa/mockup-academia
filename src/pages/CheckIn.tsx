@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
+import { ScrollReveal } from '@/components/motion/ScrollReveal'
+import { Stagger, StaggerItem } from '@/components/motion/Stagger'
 import { QrCode, UserCheck, ScanFace, Clock } from 'lucide-react'
 import {
   BarChart,
@@ -36,6 +38,7 @@ export function CheckIn() {
   const { selectedUnit, addManualCheckIn } = useApp()
   const [manualName, setManualName] = useState('')
   const [justCheckedIn, setJustCheckedIn] = useState(false)
+  const shouldReduce = useReducedMotion()
 
   const handleManualCheckIn = () => {
     if (!manualName.trim()) return
@@ -52,7 +55,7 @@ export function CheckIn() {
         description={`Registro de presença — ${selectedUnit.name}`}
       />
 
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-8">
+      <ScrollReveal className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-8">
         <Card padding="lg" className="xl:col-span-1">
           <CardHeader>
             <CardTitle>Check-in manual</CardTitle>
@@ -71,7 +74,7 @@ export function CheckIn() {
             </Button>
             {justCheckedIn && (
               <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={shouldReduce ? false : { opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className="rounded-xl bg-success-muted border border-success/20 p-3 text-center"
               >
@@ -108,29 +111,25 @@ export function CheckIn() {
             </ResponsiveContainer>
           </div>
         </Card>
-      </div>
+      </ScrollReveal>
 
+      <ScrollReveal delay={0.06}>
       <Card padding="lg">
         <CardHeader>
           <CardTitle>Últimos check-ins</CardTitle>
         </CardHeader>
-        <div className="space-y-2">
+        <Stagger className="space-y-2">
           {checkIns.length === 0 ? (
             <p className="text-sm text-vertex-400 text-center py-8">
               Nenhum check-in registrado nesta unidade hoje.
             </p>
           ) : (
-            checkIns.map((checkin, i) => {
+            checkIns.map((checkin) => {
               const method = methodLabels[checkin.method]
               const MethodIcon = method.icon
               return (
-                <motion.div
-                  key={checkin.id}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.06 }}
-                  className="flex items-center gap-4 rounded-xl p-4 hover:bg-vertex-700/30 transition-colors border border-transparent hover:border-vertex-600/30"
-                >
+                <StaggerItem key={checkin.id}>
+                <div className="flex items-center gap-4 rounded-xl p-4 hover:bg-vertex-700/30 transition-colors duration-200 border border-transparent hover:border-vertex-600/30">
                   <Avatar name={checkin.studentName} size="md" />
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-vertex-50">{checkin.studentName}</p>
@@ -148,12 +147,14 @@ export function CheckIn() {
                       {checkin.duration} min
                     </div>
                   )}
-                </motion.div>
+                </div>
+                </StaggerItem>
               )
             })
           )}
-        </div>
+        </Stagger>
       </Card>
+      </ScrollReveal>
     </div>
   )
 }

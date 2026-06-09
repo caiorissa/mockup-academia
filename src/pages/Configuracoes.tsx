@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
+import { ScrollReveal } from '@/components/motion/ScrollReveal'
 import {
   User,
   Building2,
@@ -47,6 +48,7 @@ export function Configuracoes() {
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [passwordMessage, setPasswordMessage] = useState<string | null>(null)
+  const shouldReduce = useReducedMotion()
 
   const handlePasswordChange = () => {
     if (!currentPassword) {
@@ -87,9 +89,9 @@ export function Configuracoes() {
       <AnimatePresence>
         {savedMessage && (
           <motion.div
-            initial={{ opacity: 0, y: -8 }}
+            initial={shouldReduce ? false : { opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
+            exit={shouldReduce ? undefined : { opacity: 0, y: -8 }}
             className="mb-6 flex items-center gap-2 rounded-xl bg-success-muted border border-success/30 px-4 py-3 text-sm text-success"
           >
             <Check className="h-4 w-4 shrink-0" />
@@ -99,6 +101,7 @@ export function Configuracoes() {
       </AnimatePresence>
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+        <ScrollReveal delay={0}>
         <Card padding="lg">
           <CardHeader>
             <div className="flex items-center gap-3">
@@ -150,7 +153,9 @@ export function Configuracoes() {
             </div>
           </div>
         </Card>
+        </ScrollReveal>
 
+        <ScrollReveal delay={0.05}>
         <Card padding="lg">
           <CardHeader>
             <div className="flex items-center gap-3">
@@ -188,7 +193,9 @@ export function Configuracoes() {
             </div>
           </div>
         </Card>
+        </ScrollReveal>
 
+        <ScrollReveal delay={0.08}>
         <Card padding="lg">
           <CardHeader>
             <div className="flex items-center gap-3">
@@ -225,7 +232,9 @@ export function Configuracoes() {
             })}
           </div>
         </Card>
+        </ScrollReveal>
 
+        <ScrollReveal delay={0.1}>
         <Card padding="lg">
           <CardHeader>
             <div className="flex items-center gap-3">
@@ -272,7 +281,9 @@ export function Configuracoes() {
             />
           </div>
         </Card>
+        </ScrollReveal>
 
+        <ScrollReveal delay={0.12}>
         <Card padding="lg">
           <CardHeader>
             <div>
@@ -296,7 +307,9 @@ export function Configuracoes() {
             />
           </div>
         </Card>
+        </ScrollReveal>
 
+        <ScrollReveal delay={0.14}>
         <Card padding="lg">
           <CardHeader>
             <div className="flex items-center gap-3">
@@ -355,6 +368,7 @@ export function Configuracoes() {
             </Button>
           </div>
         </Card>
+        </ScrollReveal>
       </div>
     </div>
   )

@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion'
+import { ScrollReveal } from '@/components/motion/ScrollReveal'
+import { Stagger, StaggerItem } from '@/components/motion/Stagger'
 import {
   Users,
   DollarSign,
@@ -90,7 +91,7 @@ export function Dashboard() {
         />
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-6">
+      <ScrollReveal className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-6" delay={0.05}>
         <Card className="xl:col-span-2" padding="lg">
           <CardHeader>
             <div>
@@ -190,27 +191,23 @@ export function Dashboard() {
             ))}
           </div>
         </Card>
-      </div>
+      </ScrollReveal>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <ScrollReveal direction="left" delay={0.08}>
         <Card padding="lg">
           <CardHeader>
             <CardTitle>Atividade recente</CardTitle>
           </CardHeader>
-          <div className="space-y-1">
+          <Stagger className="space-y-1">
             {m.recentActivity.length === 0 && (
               <p className="text-sm text-vertex-500 text-center py-6">Nenhuma atividade recente.</p>
             )}
-            {m.recentActivity.map((item, i) => {
+            {m.recentActivity.map((item) => {
               const Icon = activityIcons[item.type]
               return (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, x: -8 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.06 }}
-                  className="flex items-start gap-3 rounded-xl p-3 hover:bg-vertex-700/30 transition-colors"
-                >
+                <StaggerItem key={item.id}>
+                <div className="flex items-start gap-3 p-3 hover:bg-vertex-700/30 transition-colors duration-200">
                   <div className={`mt-0.5 ${activityColors[item.type]}`}>
                     <Icon className="h-4 w-4" />
                   </div>
@@ -220,12 +217,15 @@ export function Dashboard() {
                       {formatRelative(item.timestamp)}
                     </p>
                   </div>
-                </motion.div>
+                </div>
+                </StaggerItem>
               )
             })}
-          </div>
+          </Stagger>
         </Card>
+        </ScrollReveal>
 
+        <ScrollReveal direction="right" delay={0.1}>
         <Card padding="lg">
           <CardHeader>
             <CardTitle>Alertas rápidos</CardTitle>
@@ -258,6 +258,7 @@ export function Dashboard() {
             </div>
           </div>
         </Card>
+        </ScrollReveal>
       </div>
     </div>
   )

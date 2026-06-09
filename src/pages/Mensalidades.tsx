@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { ScrollReveal } from '@/components/motion/ScrollReveal'
 import { AlertTriangle, CheckCircle2, Clock, Send, CreditCard } from 'lucide-react'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Button } from '@/components/ui/Button'
@@ -94,6 +94,7 @@ export function Mensalidades() {
         <StatCard label="Recebidos" value={pagos.toString()} icon={CheckCircle2} iconColor="text-success" delay={0.1} />
       </div>
 
+      <ScrollReveal>
       <Card padding="none" className="overflow-hidden" accent>
         <CardHeader className="px-5 pt-5">
           <CardTitle>Histórico de cobranças</CardTitle>
@@ -110,16 +111,13 @@ export function Mensalidades() {
               </tr>
             </thead>
             <tbody>
-              {payments.map((payment, i) => {
+              {payments.map((payment) => {
                 const config = statusConfig[payment.status]
                 const StatusIcon = config.icon
                 return (
-                  <motion.tr
+                  <tr
                     key={payment.id}
-                    initial={{ opacity: 0, x: -8 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.03 }}
-                    className="border-b border-vertex-700/30 hover:bg-vertex-800/40 transition-colors"
+                    className="border-b border-vertex-700/30 hover:bg-vertex-800/40 transition-colors duration-200"
                   >
                     <td className="px-5 py-4 text-sm font-semibold text-vertex-50">{payment.studentName}</td>
                     <td className="px-5 py-4 text-sm font-medium text-accent">{formatCurrency(payment.amount)}</td>
@@ -138,13 +136,14 @@ export function Mensalidades() {
                         </Button>
                       )}
                     </td>
-                  </motion.tr>
+                  </tr>
                 )
               })}
             </tbody>
           </table>
         </div>
       </Card>
+      </ScrollReveal>
 
       <Modal
         open={!!chargeModal}

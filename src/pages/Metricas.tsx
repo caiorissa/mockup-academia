@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
   Legend,
 } from 'recharts'
+import { ScrollReveal } from '@/components/motion/ScrollReveal'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/Card'
 import { StatCard } from '@/components/ui/StatCard'
@@ -81,7 +82,7 @@ export function Metricas() {
         />
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-6">
+      <ScrollReveal className="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-6" delay={0.05}>
         <Card padding="lg">
           <CardHeader>
             <div>
@@ -138,8 +139,9 @@ export function Metricas() {
             </ResponsiveContainer>
           </div>
         </Card>
-      </div>
+      </ScrollReveal>
 
+      <ScrollReveal delay={0.1}>
       <Card padding="lg">
         <CardHeader>
           <div>
@@ -208,6 +210,7 @@ export function Metricas() {
           </ResponsiveContainer>
         </div>
       </Card>
+      </ScrollReveal>
     </div>
   )
 }

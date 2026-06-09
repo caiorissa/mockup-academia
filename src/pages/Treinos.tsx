@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
+import { Stagger, StaggerItem } from '@/components/motion/Stagger'
 import { Plus, ChevronRight, X, Dumbbell } from 'lucide-react'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Button } from '@/components/ui/Button'
@@ -28,6 +29,7 @@ export function Treinos() {
 
   const [selected, setSelected] = useState<WorkoutSheet | null>(null)
   const [showNewModal, setShowNewModal] = useState(false)
+  const shouldReduce = useReducedMotion()
   const [form, setForm] = useState({
     studentId: '',
     title: '',
@@ -78,9 +80,9 @@ export function Treinos() {
           </Button>
         </Card>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {workoutSheets.map((sheet, i) => (
-            <motion.div key={sheet.id} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
+        <Stagger className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {workoutSheets.map((sheet) => (
+            <StaggerItem key={sheet.id}>
               <Card hover accent className="cursor-pointer" onClick={() => setSelected(sheet)}>
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
@@ -105,9 +107,9 @@ export function Treinos() {
                   Atualizado {formatDate(sheet.updatedAt)}
                 </p>
               </Card>
-            </motion.div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       )}
 
       <AnimatePresence>
@@ -115,10 +117,10 @@ export function Treinos() {
           <>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm" onClick={() => setSelected(null)} />
             <motion.div
-              initial={{ opacity: 0, x: '100%' }}
+              initial={shouldReduce ? { opacity: 1, x: 0 } : { opacity: 0, x: '100%' }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: '100%' }}
-              transition={{ type: 'spring', stiffness: 400, damping: 35 }}
+              exit={shouldReduce ? undefined : { opacity: 0, x: '100%' }}
+              transition={shouldReduce ? { duration: 0 } : { type: 'spring', stiffness: 400, damping: 35 }}
               className="fixed inset-y-0 right-0 z-50 w-full max-w-lg bg-vertex-900 border-l border-vertex-700/50 shadow-elevated overflow-y-auto"
             >
               <div className="sticky top-0 flex items-center justify-between p-5 border-b border-vertex-700/50 bg-vertex-900 gym-stripe">
@@ -152,15 +154,10 @@ export function Treinos() {
                     <CardTitle>Exercícios</CardTitle>
                     <CardDescription>{selected.exercises.length} exercícios</CardDescription>
                   </CardHeader>
-                  <div className="space-y-2">
-                    {selected.exercises.map((ex, i) => (
-                      <motion.div
-                        key={ex.name}
-                        initial={{ opacity: 0, x: 12 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: i * 0.04 }}
-                        className="border border-vertex-600/40 border-l-[3px] border-l-accent bg-vertex-800/60 p-4"
-                      >
+                  <Stagger className="space-y-2">
+                    {selected.exercises.map((ex) => (
+                      <StaggerItem key={ex.name}>
+                      <div className="border border-vertex-600/40 border-l-[3px] border-l-accent bg-vertex-800/60 p-4">
                         <p className="text-sm font-semibold text-vertex-50">{ex.name}</p>
                         <div className="flex gap-4 mt-2 text-xs text-vertex-500">
                           <span>{ex.sets} séries</span>
@@ -168,9 +165,10 @@ export function Treinos() {
                           {ex.load && <span>{ex.load}</span>}
                           <span>Descanso: {ex.rest}</span>
                         </div>
-                      </motion.div>
+                      </div>
+                      </StaggerItem>
                     ))}
-                  </div>
+                  </Stagger>
                 </div>
               </div>
             </motion.div>

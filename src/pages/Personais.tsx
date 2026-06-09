@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { Stagger, StaggerItem } from '@/components/motion/Stagger'
 import { Plus, Trash2, UserRound } from 'lucide-react'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Button } from '@/components/ui/Button'
@@ -55,15 +55,10 @@ export function Personais() {
         }
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-        {trainers.map((trainer, i) => (
-          <motion.div
-            key={trainer.id}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.04 }}
-          >
-            <Card accent={trainer.active} padding="lg" className={!trainer.active ? 'opacity-60' : ''}>
+      <Stagger className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+        {trainers.map((trainer) => (
+          <StaggerItem key={trainer.id}>
+            <Card hover accent={trainer.active} padding="lg" className={!trainer.active ? 'opacity-60' : ''}>
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <div className="flex h-11 w-11 items-center justify-center bg-vertex-700 border border-vertex-600/50 text-accent">
@@ -109,9 +104,9 @@ export function Personais() {
                 </Button>
               </div>
             </Card>
-          </motion.div>
+          </StaggerItem>
         ))}
-      </div>
+      </Stagger>
 
       <Modal
         open={showModal}

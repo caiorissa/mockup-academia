@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { X } from 'lucide-react'
 import { navItems } from '@/config/navigation'
 import { cn } from '@/lib/utils'
@@ -39,6 +39,7 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
   const pendingPaymentsCount = usePendingPaymentsCount()
   const { settings } = useApp()
   const compact = settings.preferences.compactSidebar
+  const shouldReduceMotion = useReducedMotion()
 
   return (
     <nav className={cn('flex flex-col px-2', compact ? 'gap-0.5' : 'gap-1')}>
@@ -59,25 +60,36 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
                 'group relative flex items-center gap-3 px-3 font-semibold uppercase tracking-wide transition-all duration-150',
                 compact ? 'py-2 text-[10px]' : 'py-2.5 text-xs',
                 isActive
-                  ? 'text-on-accent bg-accent shadow-glow'
+                  ? 'text-on-accent'
                   : 'text-vertex-300 hover:text-accent hover:bg-vertex-800/60',
               )
             }
           >
             {({ isActive }) => (
               <>
+                {isActive && (
+                  <motion.div
+                    layoutId="sidebar-active"
+                    className="absolute inset-0 bg-accent shadow-glow"
+                    transition={
+                      shouldReduceMotion
+                        ? { duration: 0 }
+                        : { type: 'spring', stiffness: 380, damping: 32 }
+                    }
+                  />
+                )}
                 <item.icon
                   className={cn(
-                    'shrink-0 transition-colors',
+                    'relative shrink-0 transition-colors',
                     compact ? 'h-4 w-4' : 'h-[18px] w-[18px]',
                     isActive ? 'text-on-accent' : 'text-vertex-400 group-hover:text-accent',
                   )}
                 />
-                <span className="flex-1">{item.label}</span>
+                <span className="relative flex-1">{item.label}</span>
                 {badge !== undefined && badge > 0 && (
                   <span
                     className={cn(
-                      'flex h-5 min-w-5 items-center justify-center px-1 text-[10px] font-bold',
+                      'relative z-10 flex h-5 min-w-5 items-center justify-center px-1 text-[10px] font-bold',
                       isActive ? 'bg-on-accent text-accent' : 'bg-danger text-white',
                     )}
                   >
@@ -94,6 +106,8 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
 }
 
 export function Sidebar({ open, onClose }: SidebarProps) {
+  const shouldReduceMotion = useReducedMotion()
+
   return (
     <>
       <aside className="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0 lg:z-30 border-r border-vertex-700/50 bg-vertex-900 shadow-card">
@@ -119,10 +133,14 @@ export function Sidebar({ open, onClose }: SidebarProps) {
               onClick={onClose}
             />
             <motion.aside
-              initial={{ x: '-100%' }}
+              initial={shouldReduceMotion ? { x: 0 } : { x: '-100%' }}
               animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ type: 'spring', stiffness: 400, damping: 35 }}
+              exit={shouldReduceMotion ? undefined : { x: '-100%' }}
+              transition={
+                shouldReduceMotion
+                  ? { duration: 0 }
+                  : { type: 'spring', stiffness: 400, damping: 35 }
+              }
               className="fixed inset-y-0 left-0 z-50 w-72 flex flex-col bg-vertex-900 border-r border-vertex-700/50 lg:hidden"
             >
               <div className="flex h-16 items-center justify-between px-4 border-b border-vertex-700/50 gym-stripe">

@@ -1,5 +1,7 @@
-import { forwardRef, type ButtonHTMLAttributes } from 'react'
+import { forwardRef, type ButtonHTMLAttributes, type ComponentProps } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
 import { cn } from '@/lib/utils'
+import { springSnappy, tapScale, hoverLift } from '@/lib/motion'
 
 type Variant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'outline'
 type Size = 'sm' | 'md' | 'lg' | 'icon'
@@ -28,22 +30,35 @@ const sizes: Record<Size, string> = {
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = 'primary', size = 'md', children, ...props }, ref) => (
-    <button
-      ref={ref}
-      className={cn(
-        'inline-flex items-center justify-center font-medium transition-all duration-150',
-        'disabled:opacity-40 disabled:pointer-events-none',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2 focus-visible:ring-offset-vertex-950',
-        variants[variant],
-        sizes[size],
-        className,
-      )}
-      {...props}
-    >
-      {children}
-    </button>
-  ),
+  ({ className, variant = 'primary', size = 'md', children, disabled, ...props }, ref) => {
+    const shouldReduce = useReducedMotion()
+
+    return (
+      <motion.button
+        ref={ref}
+        type={props.type ?? 'button'}
+        disabled={disabled}
+        whileTap={disabled || shouldReduce ? undefined : tapScale}
+        whileHover={
+          disabled || shouldReduce || variant === 'primary'
+            ? undefined
+            : hoverLift
+        }
+        transition={springSnappy}
+        className={cn(
+          'inline-flex items-center justify-center font-medium transition-colors duration-150',
+          'disabled:opacity-40 disabled:pointer-events-none',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2 focus-visible:ring-offset-vertex-950',
+          variants[variant],
+          sizes[size],
+          className,
+        )}
+        {...(props as ComponentProps<typeof motion.button>)}
+      >
+        {children}
+      </motion.button>
+    )
+  },
 )
 
 Button.displayName = 'Button'

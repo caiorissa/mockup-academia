@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
+import { ScrollReveal } from '@/components/motion/ScrollReveal'
+import { Stagger, StaggerItem } from '@/components/motion/Stagger'
 import { Plus, Filter, MoreHorizontal, Mail, Phone, UserX, UserCheck, MessageCircle } from 'lucide-react'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Button } from '@/components/ui/Button'
@@ -48,6 +50,7 @@ export function Matriculas() {
   const [statusFilter, setStatusFilter] = useState<StudentStatus | 'todos'>('todos')
   const [planFilter, setPlanFilter] = useState<PlanType | 'todos'>('todos')
   const [showFilters, setShowFilters] = useState(false)
+  const shouldReduce = useReducedMotion()
   const [showNewModal, setShowNewModal] = useState(false)
   const [menuOpen, setMenuOpen] = useState<string | null>(null)
   const menuRef = useRef<HTMLDivElement>(null)
@@ -155,9 +158,9 @@ export function Matriculas() {
         <AnimatePresence>
           {showFilters && (
             <motion.div
-              initial={{ height: 0, opacity: 0 }}
+              initial={shouldReduce ? false : { height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
+              exit={shouldReduce ? undefined : { height: 0, opacity: 0 }}
               className="overflow-hidden"
             >
               <div className="pt-4 mt-4 border-t border-vertex-700/40 flex flex-wrap gap-2">
@@ -182,7 +185,7 @@ export function Matriculas() {
         </AnimatePresence>
       </Card>
 
-      <div className="hidden lg:block">
+      <ScrollReveal className="hidden lg:block">
         <Card padding="none" className="overflow-hidden" accent>
           <table className="w-full">
             <thead>
@@ -195,13 +198,10 @@ export function Matriculas() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((student, i) => (
-                <motion.tr
+              {filtered.map((student) => (
+                <tr
                   key={student.id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: i * 0.03 }}
-                  className="border-b border-vertex-700/30 hover:bg-vertex-800/40 transition-colors group"
+                  className="border-b border-vertex-700/30 hover:bg-vertex-800/40 transition-colors duration-200 group"
                 >
                   <td className="px-5 py-4">
                     <div className="flex items-center gap-3">
@@ -272,16 +272,16 @@ export function Matriculas() {
                       </div>
                     )}
                   </td>
-                </motion.tr>
+                </tr>
               ))}
             </tbody>
           </table>
         </Card>
-      </div>
+      </ScrollReveal>
 
-      <div className="lg:hidden space-y-3">
-        {filtered.map((student, i) => (
-          <motion.div key={student.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}>
+      <Stagger className="lg:hidden space-y-3">
+        {filtered.map((student) => (
+          <StaggerItem key={student.id}>
             <Card hover accent>
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center gap-3">
@@ -304,9 +304,9 @@ export function Matriculas() {
                 <span className="text-xs text-vertex-500">Vence {formatDate(student.nextDueDate)}</span>
               </div>
             </Card>
-          </motion.div>
+          </StaggerItem>
         ))}
-      </div>
+      </Stagger>
 
       <Modal
         open={showNewModal}
