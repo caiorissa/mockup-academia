@@ -6,7 +6,7 @@ const links = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-vertex-700/40 bg-vertex-900/80 px-4 lg:px-8 py-5">
+    <footer className="border-t border-vertex-700/40 bg-vertex-900/70 px-4 lg:px-8 py-5">
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-xs text-vertex-500 text-center sm:text-left">
           Desenvolvido por{' '}

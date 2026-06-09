@@ -214,8 +214,8 @@ export function Configuracoes() {
                   className={cn(
                     'flex flex-col items-center gap-2 rounded-xl border p-4 transition-all',
                     active
-                      ? 'border-accent/50 bg-accent/10 text-accent'
-                      : 'border-vertex-600/40 bg-vertex-800/40 text-vertex-300 hover:border-vertex-500/60',
+                      ? 'border-accent bg-accent-muted text-accent shadow-glow'
+                      : 'border-vertex-600/40 bg-vertex-900/40 text-vertex-300 hover:border-accent/40 hover:bg-accent-muted/50',
                   )}
                 >
                   <Icon className="h-5 w-5" />

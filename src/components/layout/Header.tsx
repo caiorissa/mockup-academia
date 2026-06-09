@@ -17,7 +17,7 @@ export function Header({ onMenuClick, title }: HeaderProps) {
   const pendingCount = usePendingPaymentsCount()
 
   return (
-    <header className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-vertex-700/50 bg-vertex-900/95 backdrop-blur-md px-4 lg:px-8">
+    <header className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-vertex-700/50 bg-vertex-900/90 backdrop-blur-md px-4 lg:px-8 shadow-card">
       <Button
         variant="ghost"
         size="icon"

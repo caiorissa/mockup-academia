@@ -26,7 +26,7 @@ export function Card({
   return (
     <div
       className={cn(
-        'bg-vertex-800/90 border border-vertex-600/40 shadow-card',
+        'bg-surface/95 border border-vertex-700/50 shadow-card',
         accent && 'border-l-[3px] border-l-accent',
         hover &&
           'transition-all duration-200 hover:border-accent/40 hover:shadow-elevated hover:-translate-y-px',

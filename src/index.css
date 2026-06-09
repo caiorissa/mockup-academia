@@ -16,6 +16,9 @@
   --color-vertex-100: #e4e4da;
   --color-vertex-50: #f3f3ec;
 
+  --color-on-accent: #0a0a08;
+  --color-surface: #161614;
+
   --color-accent: #d4f000;
   --color-accent-hover: #e8ff1a;
   --color-accent-muted: rgba(212, 240, 0, 0.1);
@@ -36,26 +39,39 @@
   --animate-slide-up: slide-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+/* Light mode — escala invertida para bg/text, tokens fixos para contraste */
 html.light {
-  --color-vertex-950: #eceae2;
-  --color-vertex-900: #f7f6f0;
+  --color-vertex-950: #f0efe9;
+  --color-vertex-900: #ffffff;
   --color-vertex-800: #ffffff;
-  --color-vertex-700: #e8e6dc;
-  --color-vertex-600: #d4d2c6;
-  --color-vertex-500: #b0aea0;
-  --color-vertex-400: #7a786c;
-  --color-vertex-300: #5a584e;
-  --color-vertex-200: #3a3830;
-  --color-vertex-100: #22211c;
-  --color-vertex-50: #0f0f0d;
+  --color-vertex-700: #e8e5dd;
+  --color-vertex-600: #d4d0c6;
+  --color-vertex-500: #a8a49a;
+  --color-vertex-400: #7a766c;
+  --color-vertex-300: #5c5850;
+  --color-vertex-200: #3a3832;
+  --color-vertex-100: #2a2824;
+  --color-vertex-50: #141412;
 
-  --color-accent: #9ab800;
-  --color-accent-hover: #b8d600;
-  --color-accent-muted: rgba(154, 184, 0, 0.12);
+  --color-on-accent: #141412;
+  --color-surface: #ffffff;
 
-  --shadow-card: 0 0 0 1px rgba(0, 0, 0, 0.06), 3px 3px 0 rgba(0, 0, 0, 0.08);
-  --shadow-elevated: 0 0 0 1px rgba(0, 0, 0, 0.08), 6px 6px 0 rgba(0, 0, 0, 0.1);
-  --shadow-glow: 0 0 16px rgba(154, 184, 0, 0.12);
+  --color-accent: #b8d600;
+  --color-accent-hover: #c8e600;
+  --color-accent-muted: rgba(184, 214, 0, 0.14);
+
+  --color-success: #1a9e4a;
+  --color-success-muted: rgba(26, 158, 74, 0.09);
+  --color-warning: #d4880a;
+  --color-warning-muted: rgba(212, 136, 10, 0.09);
+  --color-danger: #d92d20;
+  --color-danger-muted: rgba(217, 45, 32, 0.09);
+  --color-info: #0d9488;
+  --color-info-muted: rgba(13, 148, 136, 0.09);
+
+  --shadow-card: 0 1px 2px rgba(20, 20, 18, 0.04), 0 4px 12px rgba(20, 20, 18, 0.03);
+  --shadow-elevated: 0 4px 20px rgba(20, 20, 18, 0.07), 0 1px 3px rgba(20, 20, 18, 0.04);
+  --shadow-glow: 0 0 0 1px rgba(184, 214, 0, 0.35), 0 2px 10px rgba(184, 214, 0, 0.12);
 }
 
 @keyframes fade-in {
@@ -86,8 +102,8 @@ html.light {
 
   html.light body {
     background-image:
-      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(154, 184, 0, 0.06), transparent),
-      url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
+      radial-gradient(ellipse 90% 60% at 50% -20%, rgba(184, 214, 0, 0.08), transparent 55%),
+      linear-gradient(175deg, #faf9f6 0%, #f0efe9 45%, #ebe9e2 100%);
   }
 
   #root {
@@ -110,6 +126,10 @@ html.light {
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-accent/60;
   }
+
+  html.light ::-webkit-scrollbar-thumb {
+    @apply bg-vertex-600/80;
+  }
 }
 
 @layer utilities {
@@ -124,6 +144,16 @@ html.light {
       transparent 4px,
       rgba(212, 240, 0, 0.04) 4px,
       rgba(212, 240, 0, 0.04) 8px
+    );
+  }
+
+  html.light .gym-stripe {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 8px,
+      rgba(184, 214, 0, 0.05) 8px,
+      rgba(184, 214, 0, 0.05) 16px
     );
   }
 

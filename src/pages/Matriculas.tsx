@@ -138,7 +138,7 @@ export function Matriculas() {
                 onClick={() => setStatusFilter(status)}
                 className={`px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider transition-all ${
                   statusFilter === status
-                    ? 'bg-accent text-vertex-950'
+                    ? 'bg-accent text-on-accent'
                     : 'text-vertex-400 hover:text-accent border border-vertex-600/40'
                 }`}
               >
@@ -169,7 +169,7 @@ export function Matriculas() {
                     onClick={() => setPlanFilter(plan)}
                     className={`px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider transition-all ${
                       planFilter === plan
-                        ? 'bg-accent text-vertex-950'
+                        ? 'bg-accent text-on-accent'
                         : 'text-vertex-400 hover:text-accent border border-vertex-600/40'
                     }`}
                   >

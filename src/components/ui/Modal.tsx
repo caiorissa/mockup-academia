@@ -58,7 +58,7 @@ export function Modal({
               exit={{ opacity: 0, scale: 0.96, y: 12 }}
               transition={{ type: 'spring', stiffness: 400, damping: 32 }}
               className={cn(
-                'pointer-events-auto w-full bg-vertex-900 border border-vertex-600/50 shadow-elevated',
+                'pointer-events-auto w-full bg-surface border border-vertex-700/50 shadow-elevated',
                 sizes[size],
               )}
               onClick={(e) => e.stopPropagation()}

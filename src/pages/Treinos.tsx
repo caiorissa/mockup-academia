@@ -123,7 +123,7 @@ export function Treinos() {
             >
               <div className="sticky top-0 flex items-center justify-between p-5 border-b border-vertex-700/50 bg-vertex-900 gym-stripe">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center bg-accent text-vertex-950">
+                  <div className="flex h-10 w-10 items-center justify-center bg-accent text-on-accent">
                     <Dumbbell className="h-5 w-5" />
                   </div>
                   <div>

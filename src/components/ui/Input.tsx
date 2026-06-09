@@ -24,7 +24,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           id={id}
           className={cn(
-            'h-10 w-full border border-vertex-600/50 bg-vertex-900/80',
+            'h-10 w-full border border-vertex-600/50 bg-vertex-900/60',
             'px-3 text-sm text-vertex-50 placeholder:text-vertex-500',
             'transition-all duration-150',
             'focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/30',
@@ -56,7 +56,7 @@ export function Select({ label, options, className, id, ...props }: SelectProps)
       <select
         id={id}
         className={cn(
-          'h-10 w-full border border-vertex-600/50 bg-vertex-900/80 px-3 text-sm text-vertex-50',
+          'h-10 w-full border border-vertex-600/50 bg-vertex-900/60 px-3 text-sm text-vertex-50',
           'focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/30',
           className,
         )}

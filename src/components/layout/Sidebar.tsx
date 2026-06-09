@@ -18,7 +18,7 @@ function Logo({ compact = false }: { compact?: boolean }) {
 
   return (
     <div className="flex items-center gap-3">
-      <div className="flex h-10 w-10 items-center justify-center bg-accent text-vertex-950 font-display font-bold text-lg clip-chamfer">
+      <div className="flex h-10 w-10 items-center justify-center bg-accent text-on-accent font-display font-bold text-lg clip-chamfer">
         V
       </div>
       {!compact && (
@@ -59,8 +59,8 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
                 'group relative flex items-center gap-3 px-3 font-semibold uppercase tracking-wide transition-all duration-150',
                 compact ? 'py-2 text-[10px]' : 'py-2.5 text-xs',
                 isActive
-                  ? 'text-vertex-950 bg-accent'
-                  : 'text-vertex-400 hover:text-accent hover:bg-vertex-800',
+                  ? 'text-on-accent bg-accent shadow-glow'
+                  : 'text-vertex-300 hover:text-accent hover:bg-vertex-800/60',
               )
             }
           >
@@ -70,7 +70,7 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
                   className={cn(
                     'shrink-0 transition-colors',
                     compact ? 'h-4 w-4' : 'h-[18px] w-[18px]',
-                    isActive ? 'text-vertex-950' : 'text-vertex-500 group-hover:text-accent',
+                    isActive ? 'text-on-accent' : 'text-vertex-400 group-hover:text-accent',
                   )}
                 />
                 <span className="flex-1">{item.label}</span>
@@ -78,7 +78,7 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
                   <span
                     className={cn(
                       'flex h-5 min-w-5 items-center justify-center px-1 text-[10px] font-bold',
-                      isActive ? 'bg-vertex-950 text-accent' : 'bg-danger text-white',
+                      isActive ? 'bg-on-accent text-accent' : 'bg-danger text-white',
                     )}
                   >
                     {badge}
@@ -96,7 +96,7 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
 export function Sidebar({ open, onClose }: SidebarProps) {
   return (
     <>
-      <aside className="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0 lg:z-30 border-r border-vertex-700/50 bg-vertex-900">
+      <aside className="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0 lg:z-30 border-r border-vertex-700/50 bg-vertex-900 shadow-card">
         <div className="flex h-16 items-center px-4 border-b border-vertex-700/50 gym-stripe">
           <Logo />
         </div>

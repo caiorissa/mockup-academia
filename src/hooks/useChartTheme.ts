@@ -8,11 +8,11 @@ export function useChartTheme() {
     () =>
       resolvedTheme === 'light'
         ? {
-            grid: '#d4d8e0',
-            axis: '#8b92a5',
+            grid: '#e8e5dd',
+            axis: '#a8a49a',
             tooltipBg: '#ffffff',
-            tooltipBorder: '#d4d8e0',
-            accent: '#9ab800',
+            tooltipBorder: '#e8e5dd',
+            accent: '#b8d600',
           }
         : {
             grid: '#2c2c28',

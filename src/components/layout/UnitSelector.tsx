@@ -63,7 +63,7 @@ export function UnitSelector({ compact = false }: { compact?: boolean }) {
                     className={cn(
                       'w-full flex items-center gap-3 px-3 py-2.5 text-left transition-colors',
                       active
-                        ? 'bg-accent text-vertex-950'
+                        ? 'bg-accent text-on-accent'
                         : 'text-vertex-300 hover:bg-vertex-800 hover:text-accent',
                     )}
                   >
