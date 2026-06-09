@@ -19,7 +19,7 @@ export function Avatar({ name, src, size = 'md', className }: AvatarProps) {
       <img
         src={src}
         alt={name}
-        className={cn('rounded-xl object-cover', sizeMap[size], className)}
+        className={cn('object-cover border border-vertex-600/50', sizeMap[size], className)}
       />
     )
   }
@@ -27,8 +27,8 @@ export function Avatar({ name, src, size = 'md', className }: AvatarProps) {
   return (
     <div
       className={cn(
-        'flex items-center justify-center rounded-xl bg-gradient-to-br from-accent/30 to-accent/10',
-        'border border-accent/20 font-semibold text-accent',
+        'flex items-center justify-center bg-vertex-700 border border-vertex-600/50',
+        'font-display font-bold text-accent',
         sizeMap[size],
         className,
       )}

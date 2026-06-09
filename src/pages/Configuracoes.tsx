@@ -15,6 +15,7 @@ import {
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/Card'
 import { Input } from '@/components/ui/Input'
+import { PhoneInput } from '@/components/ui/PhoneInput'
 import { Button } from '@/components/ui/Button'
 import { Toggle } from '@/components/ui/Toggle'
 import { Avatar } from '@/components/ui/Avatar'
@@ -135,13 +136,11 @@ export function Configuracoes() {
                 onChange={(e) => updateSettings({ email: e.target.value })}
               />
             </div>
-            <div>
-              <label className="text-xs font-medium text-vertex-300 mb-1.5 block">Telefone</label>
-              <Input
-                value={settings.phone}
-                onChange={(e) => updateSettings({ phone: e.target.value })}
-              />
-            </div>
+            <PhoneInput
+              label="Telefone"
+              value={settings.phone}
+              onChange={(phone) => updateSettings({ phone })}
+            />
             <div>
               <label className="text-xs font-medium text-vertex-300 mb-1.5 block">Cargo</label>
               <Input

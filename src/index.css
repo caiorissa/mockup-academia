@@ -1,62 +1,61 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-display: "Oswald", system-ui, sans-serif;
 
-  --color-vertex-950: #06080c;
-  --color-vertex-900: #0c0f14;
-  --color-vertex-800: #151921;
-  --color-vertex-700: #1c2130;
-  --color-vertex-600: #252b3d;
-  --color-vertex-500: #353d54;
-  --color-vertex-400: #5c6478;
-  --color-vertex-300: #8b92a5;
-  --color-vertex-200: #c4c9d4;
-  --color-vertex-100: #e8eaef;
-  --color-vertex-50: #f4f5f7;
+  --color-vertex-950: #080807;
+  --color-vertex-900: #0f0f0d;
+  --color-vertex-800: #161614;
+  --color-vertex-700: #1f1f1c;
+  --color-vertex-600: #2c2c28;
+  --color-vertex-500: #43433d;
+  --color-vertex-400: #6b6b62;
+  --color-vertex-300: #9a9a8f;
+  --color-vertex-200: #c8c8bc;
+  --color-vertex-100: #e4e4da;
+  --color-vertex-50: #f3f3ec;
 
-  --color-accent: #ff6b35;
-  --color-accent-hover: #ff8555;
-  --color-accent-muted: rgba(255, 107, 53, 0.12);
-  --color-success: #34d399;
-  --color-success-muted: rgba(52, 211, 153, 0.12);
-  --color-warning: #fbbf24;
-  --color-warning-muted: rgba(251, 191, 36, 0.12);
-  --color-danger: #f87171;
-  --color-danger-muted: rgba(248, 113, 113, 0.12);
-  --color-info: #60a5fa;
-  --color-info-muted: rgba(96, 165, 250, 0.12);
+  --color-accent: #d4f000;
+  --color-accent-hover: #e8ff1a;
+  --color-accent-muted: rgba(212, 240, 0, 0.1);
+  --color-success: #5cdb5c;
+  --color-success-muted: rgba(92, 219, 92, 0.1);
+  --color-warning: #ffb020;
+  --color-warning-muted: rgba(255, 176, 32, 0.1);
+  --color-danger: #ff3b30;
+  --color-danger-muted: rgba(255, 59, 48, 0.1);
+  --color-info: #4ecdc4;
+  --color-info-muted: rgba(78, 205, 196, 0.1);
 
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.24), 0 0 0 1px rgba(255, 255, 255, 0.04);
-  --shadow-elevated: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.06);
-  --shadow-glow: 0 0 24px rgba(255, 107, 53, 0.15);
+  --shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.04), 4px 4px 0 rgba(0, 0, 0, 0.4);
+  --shadow-elevated: 0 0 0 1px rgba(255, 255, 255, 0.06), 8px 8px 0 rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px rgba(212, 240, 0, 0.15);
 
-  --animate-fade-in: fade-in 0.4s ease-out forwards;
-  --animate-slide-up: slide-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-fade-in: fade-in 0.35s ease-out forwards;
+  --animate-slide-up: slide-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 html.light {
-  --color-vertex-950: #f4f5f7;
-  --color-vertex-900: #ffffff;
-  --color-vertex-800: #f0f1f4;
-  --color-vertex-700: #e8eaef;
-  --color-vertex-600: #d4d8e0;
-  --color-vertex-500: #b8bec9;
-  --color-vertex-400: #8b92a5;
-  --color-vertex-300: #5c6478;
-  --color-vertex-200: #353d54;
-  --color-vertex-100: #1c2130;
-  --color-vertex-50: #0c0f14;
+  --color-vertex-950: #eceae2;
+  --color-vertex-900: #f7f6f0;
+  --color-vertex-800: #ffffff;
+  --color-vertex-700: #e8e6dc;
+  --color-vertex-600: #d4d2c6;
+  --color-vertex-500: #b0aea0;
+  --color-vertex-400: #7a786c;
+  --color-vertex-300: #5a584e;
+  --color-vertex-200: #3a3830;
+  --color-vertex-100: #22211c;
+  --color-vertex-50: #0f0f0d;
 
-  --color-accent-muted: rgba(255, 107, 53, 0.1);
-  --color-success-muted: rgba(52, 211, 153, 0.1);
-  --color-warning-muted: rgba(251, 191, 36, 0.1);
-  --color-danger-muted: rgba(248, 113, 113, 0.1);
-  --color-info-muted: rgba(96, 165, 250, 0.1);
+  --color-accent: #9ab800;
+  --color-accent-hover: #b8d600;
+  --color-accent-muted: rgba(154, 184, 0, 0.12);
 
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04);
-  --shadow-elevated: 0 8px 32px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
-  --shadow-glow: 0 0 24px rgba(255, 107, 53, 0.08);
+  --shadow-card: 0 0 0 1px rgba(0, 0, 0, 0.06), 3px 3px 0 rgba(0, 0, 0, 0.08);
+  --shadow-elevated: 0 0 0 1px rgba(0, 0, 0, 0.08), 6px 6px 0 rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 16px rgba(154, 184, 0, 0.12);
 }
 
 @keyframes fade-in {
@@ -65,19 +64,13 @@ html.light {
 }
 
 @keyframes slide-up {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @layer base {
   * {
-    @apply border-vertex-600/40;
+    @apply border-vertex-600/30;
   }
 
   html {
@@ -86,6 +79,15 @@ html.light {
 
   body {
     @apply bg-vertex-950 text-vertex-50 font-sans m-0 min-h-screen;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(212, 240, 0, 0.04), transparent),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+
+  html.light body {
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(154, 184, 0, 0.06), transparent),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
   }
 
   #root {
@@ -93,8 +95,8 @@ html.light {
   }
 
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
   }
 
   ::-webkit-scrollbar-track {
@@ -102,10 +104,30 @@ html.light {
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-vertex-600 rounded-full;
+    @apply bg-vertex-600;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-vertex-500;
+    @apply bg-accent/60;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .gym-stripe {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 4px,
+      rgba(212, 240, 0, 0.04) 4px,
+      rgba(212, 240, 0, 0.04) 8px
+    );
+  }
+
+  .clip-chamfer {
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
   }
 }

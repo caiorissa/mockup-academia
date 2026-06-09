@@ -12,14 +12,14 @@ export function useChartTheme() {
             axis: '#8b92a5',
             tooltipBg: '#ffffff',
             tooltipBorder: '#d4d8e0',
-            accent: '#FF6B35',
+            accent: '#9ab800',
           }
         : {
-            grid: '#252b3d',
-            axis: '#5c6478',
-            tooltipBg: '#1c2130',
-            tooltipBorder: '#353d54',
-            accent: '#FF6B35',
+            grid: '#2c2c28',
+            axis: '#6b6b62',
+            tooltipBg: '#161614',
+            tooltipBorder: '#2c2c28',
+            accent: '#d4f000',
           },
     [resolvedTheme],
   )

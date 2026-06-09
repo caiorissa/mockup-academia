@@ -5,6 +5,7 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode
   hover?: boolean
   padding?: 'none' | 'sm' | 'md' | 'lg'
+  accent?: boolean
 }
 
 const paddingMap = {
@@ -19,13 +20,16 @@ export function Card({
   className,
   hover = false,
   padding = 'md',
+  accent = false,
   ...props
 }: CardProps) {
   return (
     <div
       className={cn(
-        'rounded-2xl bg-vertex-800/80 border border-vertex-600/30 shadow-card backdrop-blur-sm',
-        hover && 'transition-all duration-300 hover:border-vertex-500/50 hover:shadow-elevated hover:-translate-y-0.5',
+        'bg-vertex-800/90 border border-vertex-600/40 shadow-card',
+        accent && 'border-l-[3px] border-l-accent',
+        hover &&
+          'transition-all duration-200 hover:border-accent/40 hover:shadow-elevated hover:-translate-y-px',
         paddingMap[padding],
         className,
       )}
@@ -58,7 +62,7 @@ export function CardTitle({
   className?: string
 }) {
   return (
-    <h3 className={cn('text-sm font-semibold text-vertex-50', className)}>
+    <h3 className={cn('font-display text-sm font-semibold uppercase tracking-wider text-vertex-50', className)}>
       {children}
     </h3>
   )
@@ -72,6 +76,6 @@ export function CardDescription({
   className?: string
 }) {
   return (
-    <p className={cn('text-xs text-vertex-300 mt-0.5', className)}>{children}</p>
+    <p className={cn('text-xs text-vertex-400 mt-0.5', className)}>{children}</p>
   )
 }

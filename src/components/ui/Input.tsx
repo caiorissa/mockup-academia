@@ -1,32 +1,73 @@
-import { forwardRef, type InputHTMLAttributes } from 'react'
+import { forwardRef, type InputHTMLAttributes, type SelectHTMLAttributes } from 'react'
 import { cn } from '@/lib/utils'
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ReactNode
+  label?: string
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ className, icon, ...props }, ref) => (
-    <div className="relative">
-      {icon && (
-        <div className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-vertex-400">
-          {icon}
-        </div>
+  ({ className, icon, label, id, ...props }, ref) => (
+    <div className="w-full">
+      {label && (
+        <label htmlFor={id} className="text-[11px] font-semibold uppercase tracking-wider text-vertex-400 mb-1.5 block">
+          {label}
+        </label>
       )}
-      <input
-        ref={ref}
-        className={cn(
-          'h-10 w-full rounded-xl border border-vertex-600/50 bg-vertex-800/60',
-          'px-3 text-sm text-vertex-50 placeholder:text-vertex-400',
-          'transition-all duration-200',
-          'focus:border-accent/50 focus:outline-none focus:ring-2 focus:ring-accent/20',
-          icon && 'pl-10',
-          className,
+      <div className="relative">
+        {icon && (
+          <div className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-vertex-400">
+            {icon}
+          </div>
         )}
-        {...props}
-      />
+        <input
+          ref={ref}
+          id={id}
+          className={cn(
+            'h-10 w-full border border-vertex-600/50 bg-vertex-900/80',
+            'px-3 text-sm text-vertex-50 placeholder:text-vertex-500',
+            'transition-all duration-150',
+            'focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/30',
+            icon && 'pl-10',
+            className,
+          )}
+          {...props}
+        />
+      </div>
     </div>
   ),
 )
 
 Input.displayName = 'Input'
+
+interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
+  label?: string
+  options: { value: string; label: string }[]
+}
+
+export function Select({ label, options, className, id, ...props }: SelectProps) {
+  return (
+    <div className="w-full">
+      {label && (
+        <label htmlFor={id} className="text-[11px] font-semibold uppercase tracking-wider text-vertex-400 mb-1.5 block">
+          {label}
+        </label>
+      )}
+      <select
+        id={id}
+        className={cn(
+          'h-10 w-full border border-vertex-600/50 bg-vertex-900/80 px-3 text-sm text-vertex-50',
+          'focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/30',
+          className,
+        )}
+        {...props}
+      >
+        {options.map((opt) => (
+          <option key={opt.value} value={opt.value}>
+            {opt.label}
+          </option>
+        ))}
+      </select>
+    </div>
+  )
+}

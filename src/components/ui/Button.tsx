@@ -11,19 +11,19 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variants: Record<Variant, string> = {
   primary:
-    'bg-accent text-white hover:bg-accent-hover shadow-glow active:scale-[0.98]',
+    'bg-accent text-vertex-950 hover:bg-accent-hover font-semibold shadow-glow active:translate-x-[1px] active:translate-y-[1px] active:shadow-none',
   secondary:
-    'bg-vertex-700 text-vertex-50 hover:bg-vertex-600 border border-vertex-600/60',
-  ghost: 'text-vertex-200 hover:bg-vertex-800 hover:text-vertex-50',
+    'bg-vertex-700 text-vertex-100 hover:bg-vertex-600 border border-vertex-500/50',
+  ghost: 'text-vertex-300 hover:bg-vertex-800 hover:text-accent',
   danger: 'bg-danger/15 text-danger hover:bg-danger/25 border border-danger/30',
   outline:
-    'border border-vertex-500/60 text-vertex-100 hover:border-accent/50 hover:text-accent',
+    'border border-vertex-500/60 text-vertex-200 hover:border-accent hover:text-accent hover:bg-accent/5',
 }
 
 const sizes: Record<Size, string> = {
   sm: 'h-8 px-3 text-xs gap-1.5',
   md: 'h-10 px-4 text-sm gap-2',
-  lg: 'h-12 px-6 text-base gap-2.5',
+  lg: 'h-12 px-6 text-sm gap-2.5 uppercase tracking-wide font-display font-semibold',
   icon: 'h-10 w-10',
 }
 
@@ -32,9 +32,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     <button
       ref={ref}
       className={cn(
-        'inline-flex items-center justify-center rounded-xl font-medium transition-all duration-200',
+        'inline-flex items-center justify-center font-medium transition-all duration-150',
         'disabled:opacity-40 disabled:pointer-events-none',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2 focus-visible:ring-offset-vertex-900',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 focus-visible:ring-offset-2 focus-visible:ring-offset-vertex-900',
         variants[variant],
         sizes[size],
         className,

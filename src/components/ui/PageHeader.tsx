@@ -10,18 +10,20 @@ interface PageHeaderProps {
 export function PageHeader({ title, description, actions }: PageHeaderProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: -8 }}
+      initial={{ opacity: 0, y: -6 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35 }}
-      className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8"
+      transition={{ duration: 0.3 }}
+      className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-8"
     >
-      <div>
-        <h1 className="text-2xl font-bold text-vertex-50 tracking-tight">{title}</h1>
+      <div className="border-l-[3px] border-accent pl-4">
+        <h1 className="font-display text-3xl font-bold uppercase tracking-wide text-vertex-50 leading-none">
+          {title}
+        </h1>
         {description && (
-          <p className="mt-1 text-sm text-vertex-300">{description}</p>
+          <p className="mt-2 text-sm text-vertex-400 max-w-xl">{description}</p>
         )}
       </div>
-      {actions && <div className="flex items-center gap-3 shrink-0">{actions}</div>}
+      {actions && <div className="flex items-center gap-2 shrink-0 flex-wrap">{actions}</div>}
     </motion.div>
   )
 }

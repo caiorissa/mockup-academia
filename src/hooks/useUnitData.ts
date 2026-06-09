@@ -1,34 +1,35 @@
 import { useMemo } from 'react'
 import { useApp } from '@/context/AppContext'
-import { students } from '@/data/mock/students'
-import { payments } from '@/data/mock/payments'
-import { workoutSheets } from '@/data/mock/workouts'
+import { useData } from '@/context/DataContext'
 import { checkInsByUnit, hourlyCheckInsByUnit } from '@/data/mock/checkinsByUnit'
 import { metricsByUnit } from '@/data/mock/metricsByUnit'
 
 export function useUnitStudents() {
   const { selectedUnitId } = useApp()
+  const { students } = useData()
   return useMemo(
     () => students.filter((s) => s.unitId === selectedUnitId),
-    [selectedUnitId],
+    [students, selectedUnitId],
   )
 }
 
 export function useUnitPayments() {
   const unitStudents = useUnitStudents()
+  const { payments } = useData()
   const studentIds = useMemo(() => new Set(unitStudents.map((s) => s.id)), [unitStudents])
   return useMemo(
     () => payments.filter((p) => studentIds.has(p.studentId)),
-    [studentIds],
+    [payments, studentIds],
   )
 }
 
 export function useUnitWorkouts() {
   const unitStudents = useUnitStudents()
+  const { workouts } = useData()
   const studentIds = useMemo(() => new Set(unitStudents.map((s) => s.id)), [unitStudents])
   return useMemo(
-    () => workoutSheets.filter((w) => studentIds.has(w.studentId)),
-    [studentIds],
+    () => workouts.filter((w) => studentIds.has(w.studentId)),
+    [workouts, studentIds],
   )
 }
 
@@ -46,4 +47,12 @@ export function useUnitHourlyCheckIns() {
 export function useUnitMetrics() {
   const { selectedUnitId } = useApp()
   return metricsByUnit[selectedUnitId] ?? metricsByUnit.pinheiros
+}
+
+export function usePendingPaymentsCount() {
+  const payments = useUnitPayments()
+  return useMemo(
+    () => payments.filter((p) => p.status === 'pendente' || p.status === 'atrasado').length,
+    [payments],
+  )
 }

@@ -10,12 +10,12 @@ type BadgeVariant =
   | 'accent'
 
 const variants: Record<BadgeVariant, string> = {
-  default: 'bg-vertex-700 text-vertex-200 border-vertex-600/50',
-  success: 'bg-success-muted text-success border-success/20',
-  warning: 'bg-warning-muted text-warning border-warning/20',
-  danger: 'bg-danger-muted text-danger border-danger/20',
-  info: 'bg-info-muted text-info border-info/20',
-  accent: 'bg-accent-muted text-accent border-accent/20',
+  default: 'bg-vertex-700 text-vertex-200 border-vertex-500/40',
+  success: 'bg-success-muted text-success border-success/25',
+  warning: 'bg-warning-muted text-warning border-warning/25',
+  danger: 'bg-danger-muted text-danger border-danger/25',
+  info: 'bg-info-muted text-info border-info/25',
+  accent: 'bg-accent-muted text-accent border-accent/25',
 }
 
 export function Badge({
@@ -32,7 +32,7 @@ export function Badge({
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-0.5 text-xs font-medium',
+        'inline-flex items-center gap-1.5 border px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider',
         variants[variant],
         className,
       )}
@@ -40,7 +40,7 @@ export function Badge({
       {dot && (
         <span
           className={cn(
-            'h-1.5 w-1.5 rounded-full',
+            'h-1.5 w-1.5',
             variant === 'success' && 'bg-success',
             variant === 'warning' && 'bg-warning',
             variant === 'danger' && 'bg-danger',

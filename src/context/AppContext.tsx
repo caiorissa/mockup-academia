@@ -9,8 +9,6 @@ import {
 } from 'react'
 import type { AccountSettings, CheckIn, ThemeMode } from '@/types'
 import { units } from '@/data/mock/units'
-import { students } from '@/data/mock/students'
-import { payments } from '@/data/mock/payments'
 import { defaultAccountSettings } from '@/data/mock/defaultSettings'
 
 const THEME_KEY = 'vertex-theme'
@@ -53,7 +51,6 @@ interface AppContextValue {
   savedMessage: string | null
   sessionCheckIns: CheckIn[]
   addManualCheckIn: (studentName: string) => void
-  pendingPaymentsCount: number
 }
 
 const AppContext = createContext<AppContextValue | null>(null)
@@ -172,17 +169,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
     [],
   )
 
-  const pendingPaymentsCount = useMemo(() => {
-    const unitStudentIds = new Set(
-      students.filter((s) => s.unitId === selectedUnitId).map((s) => s.id),
-    )
-    return payments.filter(
-      (p) =>
-        unitStudentIds.has(p.studentId) &&
-        (p.status === 'pendente' || p.status === 'atrasado'),
-    ).length
-  }, [selectedUnitId])
-
   const value = useMemo(
     () => ({
       theme,
@@ -201,7 +187,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
       savedMessage,
       sessionCheckIns,
       addManualCheckIn,
-      pendingPaymentsCount,
     }),
     [
       theme,
@@ -220,7 +205,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
       savedMessage,
       sessionCheckIns,
       addManualCheckIn,
-      pendingPaymentsCount,
     ],
   )
 

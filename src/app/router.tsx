@@ -23,6 +23,9 @@ const Metricas = lazy(() =>
 const Configuracoes = lazy(() =>
   import('@/pages/Configuracoes').then((m) => ({ default: m.Configuracoes })),
 )
+const Personais = lazy(() =>
+  import('@/pages/Personais').then((m) => ({ default: m.Personais })),
+)
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +37,7 @@ export const router = createBrowserRouter([
       { path: 'mensalidades', element: <Mensalidades /> },
       { path: 'check-in', element: <CheckIn /> },
       { path: 'treinos', element: <Treinos /> },
+      { path: 'personais', element: <Personais /> },
       { path: 'metricas', element: <Metricas /> },
       { path: 'configuracoes', element: <Configuracoes /> },
     ],

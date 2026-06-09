@@ -17,9 +17,9 @@ export function ProgressBar({
   }
 
   return (
-    <div className={cn('h-1.5 w-full rounded-full bg-vertex-700 overflow-hidden', className)}>
+    <div className={cn('h-2 w-full bg-vertex-700 overflow-hidden', className)}>
       <motion.div
-        className={cn('h-full rounded-full', colorMap[color])}
+        className={cn('h-full', colorMap[color])}
         initial={{ width: 0 }}
         animate={{ width: `${Math.min(100, Math.max(0, value))}%` }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}

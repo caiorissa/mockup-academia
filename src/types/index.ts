@@ -131,6 +131,14 @@ export interface AccountSettings {
   preferences: DisplayPreferences
 }
 
+export interface PersonalTrainer {
+  id: string
+  name: string
+  specialty?: string
+  phone?: string
+  active: boolean
+}
+
 export interface NavItem {
   label: string
   href: string
