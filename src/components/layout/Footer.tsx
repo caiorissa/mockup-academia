@@ -1,7 +1,7 @@
 const links = [
   { label: '@caaiio.dev', href: 'https://instagram.com/caaiio.dev' },
   { label: 'github.com/caiorissa', href: 'https://github.com/caiorissa' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/caiorissa' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/caio-rissa-silveira-b4706527a/' },
 ]
 
 export function Footer() {
